@@ -19,9 +19,9 @@ int main(int argc, char** argv)
 {
 	Display display(800, 600, "OpenGL graphics");
 
-	Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0)), 
-						  Vertex(glm::vec3(0, 0.5, 0)), 
-						  Vertex(glm::vec3(0.5, -0.5, 0)) };
+	Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0),  glm::vec2(0.0, 0.0)), 
+						  Vertex(glm::vec3(0, 0.5, 0),		glm::vec2(0.5, 1.0)), 
+						  Vertex(glm::vec3(0.5, -0.5, 0),   glm::vec2(1.0, 0.0)), };
 
 	/*Create mesh*/
 	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));

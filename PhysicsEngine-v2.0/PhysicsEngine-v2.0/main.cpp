@@ -3,6 +3,7 @@
 #include "display.h"
 #include "shader.h"
 #include "mesh.h"
+#include "texture.h"
 
 #include <windows.h>
 #include <string>
@@ -18,15 +19,16 @@ int main(int argc, char** argv)
 {
 	Display display(800, 600, "OpenGL graphics");
 
-	Vertex vertices[] = { Vertex(glm::vec3(-0.5, 0.5, 0)), 
-						  Vertex(glm::vec3(0.5, 0.5, 0)), 
+	Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0)), 
+						  Vertex(glm::vec3(0, 0.5, 0)), 
 						  Vertex(glm::vec3(0.5, -0.5, 0)) };
 
+	/*Create mesh*/
 	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
-
-	//Shader shader(current_working_directory() + "\\res\\basic");
+	/*Create Shader*/
 	Shader shader(".\\res\\basic");
-	//Shader shader("C:\\Users\\alexs\\source\\repos\\Physics-engine\\PhysicsEngine-v2.0\\basic.vs");
+	/*Create texture*/
+	Texture texture(".\\res\\bricks.jpg");
 
 	while (!display.isClosed())
 	{
@@ -34,9 +36,11 @@ int main(int argc, char** argv)
 		glClear(GL_COLOR_BUFFER_BIT);
 		//display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
-		mesh.Draw();
-
 		shader.Bind();
+		texture.Bind(0);
+
+		// Draw mesh of vertices
+		mesh.Draw();
 
 		display.Update();
 	}

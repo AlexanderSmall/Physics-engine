@@ -4,6 +4,7 @@
 #include "shader.h"
 #include "mesh.h"
 #include "texture.h"
+#include "transform.h"
 
 #include <windows.h>
 #include <string>
@@ -29,6 +30,11 @@ int main(int argc, char** argv)
 	Shader shader(".\\res\\basic");
 	/*Create texture*/
 	Texture texture(".\\res\\bricks.jpg");
+	/*Create transform matrix*/
+	Transform transform;
+
+	// remove:
+	float counter = 0.0f;
 
 	while (!display.isClosed())
 	{
@@ -36,13 +42,22 @@ int main(int argc, char** argv)
 		glClear(GL_COLOR_BUFFER_BIT);
 		//display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
+		// remove:
+		transform.GetPos().x = sinf(counter);
+		
 		shader.Bind();
+		// takes transform and alters all positions in the vertex shader
+		shader.Update(transform);
+
 		texture.Bind(0);
 
 		// Draw mesh of vertices
 		mesh.Draw();
 
 		display.Update();
+
+		// remove:
+		counter += 0.001f;
 	}
 
 	return 0;

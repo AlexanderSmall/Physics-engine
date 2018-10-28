@@ -5,9 +5,16 @@
 #include "mesh.h"
 #include "texture.h"
 #include "transform.h"
+#include "camera.h"
 
 #include <windows.h>
 #include <string>
+
+/* TODO:
+	create getter and setter for aspect ratio
+*/
+#define WIDTH 800
+#define HEIGHT 600
 
 std::string current_working_directory()
 {
@@ -30,6 +37,9 @@ int main(int argc, char** argv)
 	Shader shader(".\\res\\basic");
 	/*Create texture*/
 	Texture texture(".\\res\\bricks.jpg");
+	/*Create Camera*/
+	// alter Z value of vec3 using scroll wheel
+	Camera camera(glm::vec3(3, 0, -6), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
 	/*Create transform matrix*/
 	Transform transform;
 
@@ -42,12 +52,13 @@ int main(int argc, char** argv)
 		glClear(GL_COLOR_BUFFER_BIT);
 		//display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
+
 		// remove:
 		transform.GetPos().x = sinf(counter);
 		
 		shader.Bind();
 		// takes transform and alters all positions in the vertex shader
-		shader.Update(transform);
+		shader.Update(transform, camera);
 
 		texture.Bind(0);
 

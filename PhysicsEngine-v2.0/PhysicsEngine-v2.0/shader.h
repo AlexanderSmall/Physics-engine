@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 
 #include "transform.h"
+#include "camera.h"
 
 class Shader
 {
@@ -12,7 +13,7 @@ public:
 	
 	void Bind();
 
-	void Update(const Transform& transform);
+	void Update(const Transform& transform, const Camera& camera);
 
 	//static std::string LoadShader(const std::string& fileName);
 	//static void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);

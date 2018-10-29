@@ -31,15 +31,20 @@ int main(int argc, char** argv)
 						  Vertex(glm::vec3(0, 0.5, 0),		glm::vec2(0.5, 1.0)), 
 						  Vertex(glm::vec3(0.5, -0.5, 0),   glm::vec2(1.0, 0.0)), };
 
+	unsigned int indices[] = { 0, 1, 2 };
+
 	/*Create mesh*/
-	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
+	Mesh meshSphere(".\\res\\monkey3.obj");
+
+
 	/*Create Shader*/
 	Shader shader(".\\res\\basic");
 	/*Create texture*/
 	Texture texture(".\\res\\bricks.jpg");
 	/*Create Camera*/
 	// alter Z value of vec3 using scroll wheel
-	Camera camera(glm::vec3(3, 0, -6), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+	Camera camera(glm::vec3(0, 0, -6), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
 	/*Create transform matrix*/
 	Transform transform;
 
@@ -55,6 +60,8 @@ int main(int argc, char** argv)
 
 		// remove:
 		transform.GetPos().x = sinf(counter);
+		//rotate arounds screen
+		transform.GetRot().y = cosf(counter);
 		
 		shader.Bind();
 		// takes transform and alters all positions in the vertex shader
@@ -64,6 +71,7 @@ int main(int argc, char** argv)
 
 		// Draw mesh of vertices
 		mesh.Draw();
+		meshSphere.Draw();
 
 		display.Update();
 

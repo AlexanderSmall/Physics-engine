@@ -35,8 +35,8 @@ int main(int argc, char** argv)
 
 	/*Create mesh*/
 	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
+	//Mesh meshSphere(".\\res\\sphere.obj");
 	Mesh meshSphere(".\\res\\monkey3.obj");
-
 
 	/*Create Shader*/
 	Shader shader(".\\res\\basic");
@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 	Texture texture(".\\res\\bricks.jpg");
 	/*Create Camera*/
 	// alter Z value of vec3 using scroll wheel
-	Camera camera(glm::vec3(0, 0, -6), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
+	Camera camera(glm::vec3(0, 0, -10), 70.0f, (float)WIDTH / (float)HEIGHT, 0.01f, 1000.0f);
 	/*Create transform matrix*/
 	Transform transform;
 
@@ -55,13 +55,14 @@ int main(int argc, char** argv)
 	{
 		glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
+		display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
 
 		// remove:
 		transform.GetPos().x = sinf(counter);
 		//rotate arounds screen
 		transform.GetRot().y = cosf(counter);
+		transform.GetRot().z = sinf(counter);
 		
 		shader.Bind();
 		// takes transform and alters all positions in the vertex shader

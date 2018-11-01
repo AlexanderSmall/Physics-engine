@@ -7,6 +7,7 @@ class Display
 public:
 	Display(int width, int hight, const std::string& title);
 
+	void Clear(float r, float g, float b, float a);
 	void Update();
 	bool isClosed();
 

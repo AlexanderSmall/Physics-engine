@@ -147,12 +147,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\Downloads\ModernOpenGLTutorial-master\ModernOpenGLTutorial-master\stb_image.c" />
     <ClCompile Include="display.cpp" />
-    <ClCompile Include="fireworks.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="particle.cpp" />
-    <ClCompile Include="PhyEng.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
@@ -168,6 +166,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="transform.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

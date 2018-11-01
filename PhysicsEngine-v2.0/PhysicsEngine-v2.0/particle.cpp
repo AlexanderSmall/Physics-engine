@@ -1,6 +1,6 @@
 #pragma once
 #include <assert.h>
-#include <PhyEng/particle.h>
+#include "particle.h"
 
 using namespace PhyEng;
 
